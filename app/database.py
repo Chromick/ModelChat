@@ -1,6 +1,6 @@
 from typing import Optional
 from motor.motor_asyncio import AsyncIOMotorClient
-from config import MONGO_URL, MONGO_DB
+from app.config import MONGO_URL, MONGO_DB
 
 _client: Optional[AsyncIOMotorClient] = None
 
