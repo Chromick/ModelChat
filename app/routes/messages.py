@@ -3,9 +3,8 @@ from bson import ObjectId
 from datetime import datetime, timezone
 from typing import Optional
 
-from app.database import db, serialize
+from app.database import db
 from app.models import MessageIn, MessageOut, serialize
-
 
 router = APIRouter(prefix="/rooms", tags=["messages"])
 

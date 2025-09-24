@@ -1,15 +1,13 @@
-from __future__ import annotations
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime, timezone
 
-from app.database import db, serialize
+from app.database import db
+from app.models import serialize
 from app.ws_manager import manager
 from app.routes import messages
-from app.models import serialize
-
 
 app = FastAPI(title="FastAPI Chat + MongoDB Atlas")
 
@@ -57,7 +55,7 @@ async def ws_room(ws: WebSocket, room: str):
                 "created_at": datetime.now(timezone.utc),
             }
             res = await db()["messages"].insert_one(doc)
-            doc["_id"] = res.inserted_id
+            doc["_id"] = str(res.inserted_id)
 
             await manager.broadcast(room, {"type": "message", "item": serialize(doc)})
     except WebSocketDisconnect:

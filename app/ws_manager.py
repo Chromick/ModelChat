@@ -26,6 +26,5 @@ class WSManager:
             except Exception:
                 self.disconnect(room, ws)
 
-
-# instância global do manager
+# instância global
 manager = WSManager()
