@@ -8,6 +8,8 @@ from datetime import datetime, timezone
 from app.database import db, serialize
 from app.ws_manager import manager
 from app.routes import messages
+from app.models import serialize
+
 
 app = FastAPI(title="FastAPI Chat + MongoDB Atlas")
 

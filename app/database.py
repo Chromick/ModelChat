@@ -1,16 +1,8 @@
-import os
 from typing import Optional
 from motor.motor_asyncio import AsyncIOMotorClient
-from dotenv import load_dotenv
-from pathlib import Path
 from datetime import datetime, timezone
+from config import MONGO_DB,MONGO_URL
 
-
-ROOT = Path(__file__).resolve().parents[1]
-load_dotenv(dotenv_path=ROOT / ".env")
-
-MONGO_URL = os.getenv("MONGO_URL", "")
-MONGO_DB = os.getenv("MONGO_DB", "chatdb")
 
 _client: Optional[AsyncIOMotorClient] = None
 
